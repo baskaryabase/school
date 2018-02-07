@@ -37671,43 +37671,50 @@ exports.default = (0, _redux.combineReducers)({
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 exports.authReducer = authReducer;
 function authReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { user: {} };
-  var action = arguments[1];
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { user: { loggedin: null } };
+	var action = arguments[1];
 
-  switch (action.type) {
-    case "signUp":
-      localStorage.setItem("token", action.payload.token);
-      return {
-        user: action.payload.user
-      };
-      break;
+	switch (action.type) {
+		case "signUp":
+			localStorage.setItem("token", action.payload.token);
+			return {
+				user: action.payload.user
+			};
+			break;
 
-    case "signIn":
-      localStorage.setItem("token", action.payload.token);
-      return {
-        user: action.payload.user
-      };
-      break;
+		case "signIn":
+			localStorage.setItem("token", action.payload.token);
+			return {
+				user: action.payload.user
+			};
+			break;
 
-    case "logout":
-      localStorage.removeItem("token");
-      return {
-        user: {}
-      };
-      break;
+		case "logout":
+			localStorage.removeItem("token");
+			return {
+				user: {}
+			};
+			break;
 
-    case "getAuth":
-      return {
-        user: action.payload
-      };
-      break;
-  }
+		case "getAuth":
+			return {
+				user: action.payload,
+				loggedin: true
+			};
+			break;
+		case "getAuthRejected":
+			return {
+				user: action.payload,
+				loggedin: false
+			};
+			break;
+	}
 
-  return state;
+	return state;
 }
 
 /***/ }),
@@ -37817,7 +37824,7 @@ exports.default = Main;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -37855,124 +37862,122 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // import Instruction from "../test/instruction";
 
 var Navbars = function (_React$Component) {
-  _inherits(Navbars, _React$Component);
+	_inherits(Navbars, _React$Component);
 
-  function Navbars() {
-    var _ref;
+	function Navbars() {
+		var _ref;
 
-    var _temp, _this, _ret;
+		var _temp, _this, _ret;
 
-    _classCallCheck(this, Navbars);
+		_classCallCheck(this, Navbars);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Navbars.__proto__ || Object.getPrototypeOf(Navbars)).call.apply(_ref, [this].concat(args))), _this), _this.state = { loggedin: false }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Navbars.__proto__ || Object.getPrototypeOf(Navbars)).call.apply(_ref, [this].concat(args))), _this), _this.state = { loggedin: false }, _temp), _possibleConstructorReturn(_this, _ret);
+	}
 
-  _createClass(Navbars, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      var _this2 = this;
+	_createClass(Navbars, [{
+		key: "componentWillMount",
+		value: function componentWillMount() {
+			var _this2 = this;
 
-      this.props.getAuth();
-      setTimeout(function () {
-        if (_this2.props.user._id == null) {
-          _this2.setState({ loggedin: false });
-        } else {
-          _this2.setState({ loggedin: true });
-        }
-      }, 500);
-    }
-  }, {
-    key: "handleLogout",
-    value: function handleLogout() {
-      var user = this.props.user._id;
-      this.props.logout(user);
-      this.setState({ loggedin: false });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return (
-        // this.state.loggedin == false ?
-        _react2.default.createElement(
-          "div",
-          null,
-          _react2.default.createElement(
-            _reactBootstrap.Navbar,
-            { id: "custom-nav", className: "pad" },
-            _react2.default.createElement(
-              _reactBootstrap.Navbar.Header,
-              null,
-              _react2.default.createElement(
-                _reactBootstrap.Col,
-                { lg: 2, sm: 3, md: 3, xs: 4 },
-                _react2.default.createElement(
-                  _reactBootstrap.Navbar.Brand,
-                  null,
-                  _react2.default.createElement("img", { src: _logo2.default, className: "logoimg" }),
-                  _react2.default.createElement(_reactBootstrap.Navbar.Link, null)
-                )
-              ),
-              _react2.default.createElement(
-                _reactBootstrap.Col,
-                { lg: 10, sm: 9, md: 9, xs: 8 },
-                _react2.default.createElement(
-                  _reactBootstrap.Navbar.Text,
-                  { className: "kitname" },
-                  _react2.default.createElement(
-                    _reactBootstrap.Navbar.Link,
-                    {
-                      href: "http://kitcbe.com/",
-                      style: { textDecoration: "none" },
-                      target: "_blank"
-                    },
-                    "Kalaignar Karunanidhi Institute Of Technology"
-                  )
-                )
-              )
-            ),
-            this.state.loggedin === true ? _react2.default.createElement(
-              "div",
-              { className: "logoutbut" },
-              _react2.default.createElement(
-                _reactRouter.Link,
-                {
-                  href: "/",
-                  type: "submit",
-                  className: "pull-right btn btn-sm btn-warning",
-                  style: {
-                    fontWeight: "900",
-                    marginTop: "25px",
-                    fontSize: "16px"
-                  },
-                  onClick: this.handleLogout.bind(this)
-                },
-                _react2.default.createElement("i", { className: "fas fa-sign-out-alt" }),
-                " \xA0Logout"
-              )
-            ) : _react2.default.createElement("div", null)
-          )
-        )
-        //  : (
-        //   <Instruction />
-        // );
+			this.props.getAuth();
+			setTimeout(function () {
+				if (_this2.props.user._id == null) {
+					_this2.setState({ loggedin: false });
+				} else {
+					_this2.setState({ loggedin: true });
+				}
+			}, 1500);
+		}
+	}, {
+		key: "handleLogout",
+		value: function handleLogout() {
+			var user = this.props.user._id;
+			this.props.logout(user);
+			this.setState({ loggedin: false });
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			return (
+				// this.state.loggedin == false ?
+				_react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(
+						_reactBootstrap.Navbar,
+						{ id: "custom-nav", className: "pad" },
+						_react2.default.createElement(
+							_reactBootstrap.Navbar.Header,
+							null,
+							_react2.default.createElement(
+								_reactBootstrap.Col,
+								{ lg: 2, sm: 3, md: 3, xs: 4 },
+								_react2.default.createElement(
+									_reactBootstrap.Navbar.Brand,
+									null,
+									_react2.default.createElement("img", { src: _logo2.default, className: "logoimg" }),
+									_react2.default.createElement(_reactBootstrap.Navbar.Link, null)
+								)
+							),
+							_react2.default.createElement(
+								_reactBootstrap.Col,
+								{ lg: 10, sm: 9, md: 9, xs: 8 },
+								_react2.default.createElement(
+									_reactBootstrap.Navbar.Text,
+									{ className: "kitname" },
+									_react2.default.createElement(
+										_reactBootstrap.Navbar.Link,
+										{
+											href: "http://kitcbe.com/",
+											style: { textDecoration: "none" },
+											target: "_blank" },
+										"Kalaignar Karunanidhi Institute Of Technology"
+									)
+								)
+							)
+						),
+						this.state.loggedin === true ? _react2.default.createElement(
+							"div",
+							{ className: "logoutbut" },
+							_react2.default.createElement(
+								_reactRouter.Link,
+								{
+									href: "/",
+									type: "submit",
+									className: "pull-right btn btn-sm btn-warning",
+									style: {
+										fontWeight: "900",
+										marginTop: "25px",
+										fontSize: "16px"
+									},
+									onClick: this.handleLogout.bind(this) },
+								_react2.default.createElement("i", { className: "fas fa-sign-out-alt" }),
+								" \xA0Logout"
+							)
+						) : _react2.default.createElement("div", null)
+					)
+				)
+				//  : (
+				//   <Instruction />
+				// );
 
-      );
-    }
-  }]);
+			);
+		}
+	}]);
 
-  return Navbars;
+	return Navbars;
 }(_react2.default.Component);
 
 function mapStateToProps(state) {
-  return { user: state.user.user };
+	return { user: state.user.user };
 }
 
 function mapDispathToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({ getAuth: _authAction.getAuth, logout: _authAction.logout }, dispatch);
+	return (0, _redux.bindActionCreators)({ getAuth: _authAction.getAuth, logout: _authAction.logout }, dispatch);
 }
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispathToProps)(Navbars);
 
@@ -50984,7 +50989,7 @@ exports.default = Footer;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -51020,469 +51025,460 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Login = function (_React$Component) {
-  _inherits(Login, _React$Component);
+	_inherits(Login, _React$Component);
 
-  function Login(props) {
-    _classCallCheck(this, Login);
+	function Login(props) {
+		_classCallCheck(this, Login);
 
-    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
 
-    _this.state = {
-      show: false,
-      panel: "login",
-      error: "",
-      loggedin: null
-    };
-    return _this;
-  }
+		_this.state = {
+			show: false,
+			panel: "login",
+			error: "",
+			loggedin: null
+		};
+		return _this;
+	}
 
-  _createClass(Login, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      var _this2 = this;
+	_createClass(Login, [{
+		key: "componentWillMount",
+		value: function componentWillMount() {
+			var _this2 = this;
 
-      this.props.getAuth();
-      setTimeout(function () {
-        if (_this2.props.user._id != null) {
-          _this2.setState({ loggedin: true });
-        } else {
-          _this2.setState({ loggedin: false });
-        }
-      }, 500);
-    }
-  }, {
-    key: "handleClose",
-    value: function handleClose() {
-      this.setState({ show: false });
-    }
-  }, {
-    key: "handleShow",
-    value: function handleShow() {
-      this.setState({ show: true });
-    }
-  }, {
-    key: "signuppanel",
-    value: function signuppanel() {
-      this.setState({ panel: "signup" });
-    }
-  }, {
-    key: "signinpanel",
-    value: function signinpanel() {
-      this.setState({ panel: "login", error: "" });
-    }
+			this.props.getAuth();
+			setTimeout(function () {
+				if (_this2.props.user._id != null) {
+					_this2.setState({ loggedin: true });
+				} else {
+					_this2.setState({ loggedin: false });
+				}
+			}, 1500);
+		}
+	}, {
+		key: "handleClose",
+		value: function handleClose() {
+			this.setState({ show: false });
+		}
+	}, {
+		key: "handleShow",
+		value: function handleShow() {
+			this.setState({ show: true });
+		}
+	}, {
+		key: "signuppanel",
+		value: function signuppanel() {
+			this.setState({ panel: "signup" });
+		}
+	}, {
+		key: "signinpanel",
+		value: function signinpanel() {
+			this.setState({ panel: "login", error: "" });
+		}
 
-    // validateEmail
+		// validateEmail
 
-  }, {
-    key: "validateEmail",
-    value: function validateEmail() {
-      var x = (0, _reactDom.findDOMNode)(this.refs.email).value;
-      var atpos = x.indexOf("@");
-      var dotpos = x.lastIndexOf(".");
-      if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit() {
-      // checking input required
-      if ((0, _reactDom.findDOMNode)(this.refs.email).value === "" || (0, _reactDom.findDOMNode)(this.refs.fullname).value === "" || (0, _reactDom.findDOMNode)(this.refs.community).value === "" || (0, _reactDom.findDOMNode)(this.refs.contactnumber).value === "" || (0, _reactDom.findDOMNode)(this.refs.fathersname).value === "" || (0, _reactDom.findDOMNode)(this.refs.registernumber).value === "" || (0, _reactDom.findDOMNode)(this.refs.groupin12th).value === "" || (0, _reactDom.findDOMNode)(this.refs.password).value === "" || (0, _reactDom.findDOMNode)(this.refs.confirmpassword).value === "") {
-        this.setState({ error: "please checkout all fields" });
-      } else if (this.validateEmail() == false) {
-        if (this.validateEmail() == false) {
-          this.setState({ error: "Enter a valid e-mail address" });
-        }
-      } else {
-        if ((0, _reactDom.findDOMNode)(this.refs.password).value != (0, _reactDom.findDOMNode)(this.refs.confirmpassword).value) {
-          this.setState({ error: "password does not match" });
-        } else {
-          this.setState({ error: "" });
-          this.handleSignup();
-        }
-      }
-    }
-  }, {
-    key: "handleSignup",
-    value: function handleSignup() {
-      var user = {
-        email: (0, _reactDom.findDOMNode)(this.refs.email).value,
-        fullname: (0, _reactDom.findDOMNode)(this.refs.fullname).value,
-        community: (0, _reactDom.findDOMNode)(this.refs.community).value,
-        contactnumber: (0, _reactDom.findDOMNode)(this.refs.contactnumber).value,
-        fathersname: (0, _reactDom.findDOMNode)(this.refs.fathersname).value,
-        registernumber: (0, _reactDom.findDOMNode)(this.refs.registernumber).value,
-        groupin12th: (0, _reactDom.findDOMNode)(this.refs.groupin12th).value,
-        password: (0, _reactDom.findDOMNode)(this.refs.password).value,
-        confirmpassword: (0, _reactDom.findDOMNode)(this.refs.confirmpassword).value
-      };
-      this.props.signUp(user);
-    }
-    // handle signIn
+	}, {
+		key: "validateEmail",
+		value: function validateEmail() {
+			var x = (0, _reactDom.findDOMNode)(this.refs.email).value;
+			var atpos = x.indexOf("@");
+			var dotpos = x.lastIndexOf(".");
+			if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}, {
+		key: "handleSubmit",
+		value: function handleSubmit() {
+			// checking input required
+			if ((0, _reactDom.findDOMNode)(this.refs.email).value === "" || (0, _reactDom.findDOMNode)(this.refs.fullname).value === "" || (0, _reactDom.findDOMNode)(this.refs.community).value === "" || (0, _reactDom.findDOMNode)(this.refs.contactnumber).value === "" || (0, _reactDom.findDOMNode)(this.refs.fathersname).value === "" || (0, _reactDom.findDOMNode)(this.refs.registernumber).value === "" || (0, _reactDom.findDOMNode)(this.refs.groupin12th).value === "" || (0, _reactDom.findDOMNode)(this.refs.password).value === "" || (0, _reactDom.findDOMNode)(this.refs.confirmpassword).value === "") {
+				this.setState({ error: "please checkout all fields" });
+			} else if (this.validateEmail() == false) {
+				if (this.validateEmail() == false) {
+					this.setState({ error: "Enter a valid e-mail address" });
+				}
+			} else {
+				if ((0, _reactDom.findDOMNode)(this.refs.password).value != (0, _reactDom.findDOMNode)(this.refs.confirmpassword).value) {
+					this.setState({ error: "password does not match" });
+				} else {
+					this.setState({ error: "" });
+					this.handleSignup();
+				}
+			}
+		}
+	}, {
+		key: "handleSignup",
+		value: function handleSignup() {
+			var user = {
+				email: (0, _reactDom.findDOMNode)(this.refs.email).value,
+				fullname: (0, _reactDom.findDOMNode)(this.refs.fullname).value,
+				community: (0, _reactDom.findDOMNode)(this.refs.community).value,
+				contactnumber: (0, _reactDom.findDOMNode)(this.refs.contactnumber).value,
+				fathersname: (0, _reactDom.findDOMNode)(this.refs.fathersname).value,
+				registernumber: (0, _reactDom.findDOMNode)(this.refs.registernumber).value,
+				groupin12th: (0, _reactDom.findDOMNode)(this.refs.groupin12th).value,
+				password: (0, _reactDom.findDOMNode)(this.refs.password).value,
+				confirmpassword: (0, _reactDom.findDOMNode)(this.refs.confirmpassword).value
+			};
+			this.props.signUp(user);
+		}
+		// handle signIn
 
-  }, {
-    key: "handleSignin",
-    value: function handleSignin() {
-      var _this3 = this;
+	}, {
+		key: "handleSignin",
+		value: function handleSignin() {
+			var _this3 = this;
 
-      this.setState({ loggedin: null });
-      var user = {
-        email: (0, _reactDom.findDOMNode)(this.refs.emaillogin).value,
-        password: (0, _reactDom.findDOMNode)(this.refs.passwordlogin).value
-      };
-      if (user.email == "" || user.password == "") {
-        this.setState({ error: "checkout all fields" });
-      } else {
-        (0, _reactDom.findDOMNode)(this.refs.emaillogin).value = "";
-        (0, _reactDom.findDOMNode)(this.refs.passwordlogin).value = "";
-        this.setState({ error: "" });
-        this.props.signIn(user);
-      }
-      setTimeout(function () {
-        if (_this3.props.user._id == null) {
-          _this3.setState({ error: "Invalid Username or Password" });
-        } else {
-          _this3.setState({ error: "", loggedin: true });
-        }
-      }, 800);
-    }
+			this.setState({ loggedin: null });
+			var user = {
+				email: (0, _reactDom.findDOMNode)(this.refs.emaillogin).value,
+				password: (0, _reactDom.findDOMNode)(this.refs.passwordlogin).value
+			};
+			if (user.email == "" || user.password == "") {
+				this.setState({ error: "checkout all fields" });
+			} else {
+				(0, _reactDom.findDOMNode)(this.refs.emaillogin).value = "";
+				(0, _reactDom.findDOMNode)(this.refs.passwordlogin).value = "";
+				this.setState({ error: "" });
+				this.props.signIn(user);
+			}
+			setTimeout(function () {
+				if (_this3.props.user._id == null) {
+					_this3.setState({ error: "Invalid Username or Password" });
+				} else {
+					_this3.setState({ error: "", loggedin: true });
+				}
+			}, 800);
+		}
 
-    // forgot email
+		// forgot email
 
-  }, {
-    key: "handleforgotPassword",
-    value: function handleforgotPassword() {
-      this.props.forgotPassword({
-        email: (0, _reactDom.findDOMNode)(this.refs.forgotemail).value
-      });
-      this.setState({ show: false });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      switch (this.state.loggedin) {
-        case false:
-          return _react2.default.createElement(
-            "div",
-            null,
-            this.state.panel == "login" ? _react2.default.createElement(
-              _reactBootstrap.Panel,
-              { bsStyle: "primary", className: "loginpanel" },
-              _react2.default.createElement(
-                _reactBootstrap.Panel.Heading,
-                null,
-                _react2.default.createElement(
-                  _reactBootstrap.Panel.Title,
-                  {
-                    componentClass: "h3",
-                    style: { fontWeight: "900" }
-                  },
-                  "Login"
-                )
-              ),
-              _react2.default.createElement(
-                _reactBootstrap.Panel.Body,
-                null,
-                this.state.error != "" ? _react2.default.createElement(
-                  "div",
-                  { className: "alert alert-danger" },
-                  this.state.error
-                ) : _react2.default.createElement("div", null),
-                _react2.default.createElement(
-                  "form",
-                  null,
-                  _react2.default.createElement(
-                    _reactBootstrap.FormGroup,
-                    null,
-                    _react2.default.createElement(
-                      _reactBootstrap.ControlLabel,
-                      null,
-                      "Email Id"
-                    ),
-                    _react2.default.createElement(_reactBootstrap.FormControl, {
-                      type: "email",
-                      placeholder: "Enter Email",
-                      ref: "emaillogin",
-                      name: "email"
-                    }),
-                    _react2.default.createElement(
-                      _reactBootstrap.ControlLabel,
-                      null,
-                      "Password"
-                    ),
-                    _react2.default.createElement(_reactBootstrap.FormControl, {
-                      type: "password",
-                      placeholder: "Enter Password",
-                      ref: "passwordlogin",
-                      name: "password"
-                    }),
-                    _react2.default.createElement("br", null)
-                  ),
-                  _react2.default.createElement(
-                    _reactBootstrap.Button,
-                    {
-                      bsStyle: "primary",
-                      style: { fontWeight: "900" },
-                      className: "pull-right col-lg-3",
-                      onClick: this.handleSignin.bind(this)
-                    },
-                    "Submit"
-                  )
-                ),
-                _react2.default.createElement(
-                  "h5",
-                  {
-                    style: { fontWeight: "900", cursor: "pointer" },
-                    onClick: this.handleShow.bind(this)
-                  },
-                  "Forgot Password?"
-                ),
-                _react2.default.createElement("br", null),
-                _react2.default.createElement(
-                  _reactBootstrap.Button,
-                  {
-                    bsStyle: "danger",
-                    style: { fontWeight: "900" },
-                    className: "pull-right col-lg-3",
-                    onClick: this.signuppanel.bind(this)
-                  },
-                  "Signup"
-                )
-              )
-            ) : _react2.default.createElement(
-              _reactBootstrap.Panel,
-              { bsStyle: "primary", className: "signuppanel" },
-              _react2.default.createElement(
-                _reactBootstrap.Panel.Heading,
-                null,
-                _react2.default.createElement(
-                  _reactBootstrap.Panel.Title,
-                  {
-                    componentClass: "h3",
-                    style: { fontWeight: "900" }
-                  },
-                  "Signup"
-                )
-              ),
-              _react2.default.createElement(
-                _reactBootstrap.Panel.Body,
-                null,
-                this.state.error != "" ? _react2.default.createElement(
-                  "div",
-                  { className: "alert alert-danger" },
-                  this.state.error
-                ) : _react2.default.createElement("div", null),
-                _react2.default.createElement(
-                  _reactBootstrap.FormGroup,
-                  null,
-                  _react2.default.createElement(
-                    _reactBootstrap.ControlLabel,
-                    null,
-                    "Email"
-                  ),
-                  _react2.default.createElement(_reactBootstrap.FormControl, {
-                    type: "email",
-                    placeholder: "Enter Email",
-                    ref: "email",
-                    name: "email"
-                  }),
-                  _react2.default.createElement(
-                    _reactBootstrap.ControlLabel,
-                    null,
-                    "Full Name"
-                  ),
-                  _react2.default.createElement(_reactBootstrap.FormControl, {
-                    type: "text",
-                    placeholder: "Enter Full Name",
-                    ref: "fullname"
-                  }),
-                  _react2.default.createElement(
-                    _reactBootstrap.ControlLabel,
-                    null,
-                    "Father Name"
-                  ),
-                  _react2.default.createElement(_reactBootstrap.FormControl, {
-                    type: "text",
-                    placeholder: "Enter Father Name",
-                    ref: "fathersname"
-                  }),
-                  _react2.default.createElement(
-                    _reactBootstrap.ControlLabel,
-                    null,
-                    "Register Number"
-                  ),
-                  _react2.default.createElement(_reactBootstrap.FormControl, {
-                    type: "text",
-                    placeholder: "Enter Register Number",
-                    ref: "registernumber"
-                  }),
-                  _react2.default.createElement(
-                    _reactBootstrap.ControlLabel,
-                    null,
-                    "Contact Number"
-                  ),
-                  _react2.default.createElement(_reactBootstrap.FormControl, {
-                    type: "text",
-                    placeholder: "Enter Contact Number",
-                    ref: "contactnumber"
-                  }),
-                  _react2.default.createElement(
-                    _reactBootstrap.ControlLabel,
-                    null,
-                    "12th Group"
-                  ),
-                  _react2.default.createElement(_reactBootstrap.FormControl, {
-                    type: "text",
-                    placeholder: "Enter 12th Group",
-                    ref: "groupin12th"
-                  }),
-                  _react2.default.createElement(
-                    _reactBootstrap.ControlLabel,
-                    null,
-                    "Community"
-                  ),
-                  _react2.default.createElement(_reactBootstrap.FormControl, {
-                    type: "text",
-                    placeholder: "Enter Community",
-                    ref: "community"
-                  }),
-                  _react2.default.createElement(
-                    _reactBootstrap.ControlLabel,
-                    null,
-                    "Password"
-                  ),
-                  _react2.default.createElement(_reactBootstrap.FormControl, {
-                    type: "password",
-                    placeholder: "Enter Password",
-                    ref: "password"
-                  }),
-                  _react2.default.createElement(
-                    _reactBootstrap.ControlLabel,
-                    null,
-                    "Confirm Password"
-                  ),
-                  _react2.default.createElement(_reactBootstrap.FormControl, {
-                    type: "password",
-                    placeholder: "Enter Confirm Password",
-                    ref: "confirmpassword"
-                  }),
-                  _react2.default.createElement("br", null)
-                ),
-                _react2.default.createElement(
-                  _reactRouter.Link,
-                  {
-                    href: "/",
-                    bsstyle: "primary",
-                    style: { fontWeight: "900" },
-                    className: "pull-right col-lg-6 btn btn-primary",
-                    onClick: this.handleSubmit.bind(this)
-                  },
-                  "Submit"
-                ),
-                _react2.default.createElement(
-                  _reactBootstrap.Button,
-                  {
-                    bsStyle: "danger",
-                    style: { fontWeight: "900" },
-                    className: "pull-left col-lg-6",
-                    onClick: this.signinpanel.bind(this)
-                  },
-                  _react2.default.createElement("i", { className: "fas fa-hand-point-left" }),
-                  "\xA0 Go Back"
-                )
-              )
-            ),
-            _react2.default.createElement(
-              "div",
-              null,
-              _react2.default.createElement(
-                _reactBootstrap.Modal,
-                {
-                  show: this.state.show,
-                  onHide: this.handleClose.bind(this)
-                },
-                _react2.default.createElement(
-                  _reactBootstrap.Modal.Header,
-                  { closeButton: true },
-                  _react2.default.createElement(
-                    _reactBootstrap.Modal.Title,
-                    null,
-                    "Change Password"
-                  )
-                ),
-                _react2.default.createElement(
-                  _reactBootstrap.Modal.Body,
-                  null,
-                  _react2.default.createElement(
-                    "form",
-                    null,
-                    _react2.default.createElement(
-                      _reactBootstrap.FormGroup,
-                      null,
-                      _react2.default.createElement(
-                        _reactBootstrap.ControlLabel,
-                        null,
-                        "Email Id (Registered)"
-                      ),
-                      _react2.default.createElement(_reactBootstrap.FormControl, {
-                        type: "email",
-                        placeholder: "Enter Email",
-                        ref: "forgotemail",
-                        name: "email"
-                      })
-                    )
-                  ),
-                  _react2.default.createElement(
-                    "a",
-                    {
-                      href: "/",
-                      className: "btn btn-primary",
-                      style: { fontWeight: "900" },
-                      onClick: this.handleforgotPassword.bind(this)
-                    },
-                    "Reset Password"
-                  )
-                ),
-                _react2.default.createElement(
-                  _reactBootstrap.Modal.Footer,
-                  null,
-                  _react2.default.createElement(
-                    _reactBootstrap.Button,
-                    { onClick: this.handleClose.bind(this) },
-                    "Close"
-                  )
-                )
-              )
-            )
-          );
-          break;
+	}, {
+		key: "handleforgotPassword",
+		value: function handleforgotPassword() {
+			this.props.forgotPassword({
+				email: (0, _reactDom.findDOMNode)(this.refs.forgotemail).value
+			});
+			this.setState({ show: false });
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			switch (this.state.loggedin) {
+				case false:
+					return _react2.default.createElement(
+						"div",
+						null,
+						this.state.panel == "login" ? _react2.default.createElement(
+							_reactBootstrap.Panel,
+							{ bsStyle: "primary", className: "loginpanel" },
+							_react2.default.createElement(
+								_reactBootstrap.Panel.Heading,
+								null,
+								_react2.default.createElement(
+									_reactBootstrap.Panel.Title,
+									{
+										componentClass: "h3",
+										style: { fontWeight: "900" } },
+									"Login"
+								)
+							),
+							_react2.default.createElement(
+								_reactBootstrap.Panel.Body,
+								null,
+								this.state.error != "" ? _react2.default.createElement(
+									"div",
+									{ className: "alert alert-danger" },
+									this.state.error
+								) : _react2.default.createElement("div", null),
+								_react2.default.createElement(
+									"form",
+									null,
+									_react2.default.createElement(
+										_reactBootstrap.FormGroup,
+										null,
+										_react2.default.createElement(
+											_reactBootstrap.ControlLabel,
+											null,
+											"Email Id"
+										),
+										_react2.default.createElement(_reactBootstrap.FormControl, {
+											type: "email",
+											placeholder: "Enter Email",
+											ref: "emaillogin",
+											name: "email"
+										}),
+										_react2.default.createElement(
+											_reactBootstrap.ControlLabel,
+											null,
+											"Password"
+										),
+										_react2.default.createElement(_reactBootstrap.FormControl, {
+											type: "password",
+											placeholder: "Enter Password",
+											ref: "passwordlogin",
+											name: "password"
+										}),
+										_react2.default.createElement("br", null)
+									),
+									_react2.default.createElement(
+										_reactBootstrap.Button,
+										{
+											bsStyle: "primary",
+											style: { fontWeight: "900" },
+											className: "pull-right col-lg-3",
+											onClick: this.handleSignin.bind(this) },
+										"Submit"
+									)
+								),
+								_react2.default.createElement(
+									"h5",
+									{
+										style: { fontWeight: "900", cursor: "pointer" },
+										onClick: this.handleShow.bind(this) },
+									"Forgot Password?"
+								),
+								_react2.default.createElement("br", null),
+								_react2.default.createElement(
+									_reactBootstrap.Button,
+									{
+										bsStyle: "danger",
+										style: { fontWeight: "900" },
+										className: "pull-right col-lg-3",
+										onClick: this.signuppanel.bind(this) },
+									"Signup"
+								)
+							)
+						) : _react2.default.createElement(
+							_reactBootstrap.Panel,
+							{ bsStyle: "primary", className: "signuppanel" },
+							_react2.default.createElement(
+								_reactBootstrap.Panel.Heading,
+								null,
+								_react2.default.createElement(
+									_reactBootstrap.Panel.Title,
+									{
+										componentClass: "h3",
+										style: { fontWeight: "900" } },
+									"Signup"
+								)
+							),
+							_react2.default.createElement(
+								_reactBootstrap.Panel.Body,
+								null,
+								this.state.error != "" ? _react2.default.createElement(
+									"div",
+									{ className: "alert alert-danger" },
+									this.state.error
+								) : _react2.default.createElement("div", null),
+								_react2.default.createElement(
+									_reactBootstrap.FormGroup,
+									null,
+									_react2.default.createElement(
+										_reactBootstrap.ControlLabel,
+										null,
+										"Email"
+									),
+									_react2.default.createElement(_reactBootstrap.FormControl, {
+										type: "email",
+										placeholder: "Enter Email",
+										ref: "email",
+										name: "email"
+									}),
+									_react2.default.createElement(
+										_reactBootstrap.ControlLabel,
+										null,
+										"Full Name"
+									),
+									_react2.default.createElement(_reactBootstrap.FormControl, {
+										type: "text",
+										placeholder: "Enter Full Name",
+										ref: "fullname"
+									}),
+									_react2.default.createElement(
+										_reactBootstrap.ControlLabel,
+										null,
+										"Father Name"
+									),
+									_react2.default.createElement(_reactBootstrap.FormControl, {
+										type: "text",
+										placeholder: "Enter Father Name",
+										ref: "fathersname"
+									}),
+									_react2.default.createElement(
+										_reactBootstrap.ControlLabel,
+										null,
+										"Register Number"
+									),
+									_react2.default.createElement(_reactBootstrap.FormControl, {
+										type: "text",
+										placeholder: "Enter Register Number",
+										ref: "registernumber"
+									}),
+									_react2.default.createElement(
+										_reactBootstrap.ControlLabel,
+										null,
+										"Contact Number"
+									),
+									_react2.default.createElement(_reactBootstrap.FormControl, {
+										type: "text",
+										placeholder: "Enter Contact Number",
+										ref: "contactnumber"
+									}),
+									_react2.default.createElement(
+										_reactBootstrap.ControlLabel,
+										null,
+										"12th Group"
+									),
+									_react2.default.createElement(_reactBootstrap.FormControl, {
+										type: "text",
+										placeholder: "Enter 12th Group",
+										ref: "groupin12th"
+									}),
+									_react2.default.createElement(
+										_reactBootstrap.ControlLabel,
+										null,
+										"Community"
+									),
+									_react2.default.createElement(_reactBootstrap.FormControl, {
+										type: "text",
+										placeholder: "Enter Community",
+										ref: "community"
+									}),
+									_react2.default.createElement(
+										_reactBootstrap.ControlLabel,
+										null,
+										"Password"
+									),
+									_react2.default.createElement(_reactBootstrap.FormControl, {
+										type: "password",
+										placeholder: "Enter Password",
+										ref: "password"
+									}),
+									_react2.default.createElement(
+										_reactBootstrap.ControlLabel,
+										null,
+										"Confirm Password"
+									),
+									_react2.default.createElement(_reactBootstrap.FormControl, {
+										type: "password",
+										placeholder: "Enter Confirm Password",
+										ref: "confirmpassword"
+									}),
+									_react2.default.createElement("br", null)
+								),
+								_react2.default.createElement(
+									_reactRouter.Link,
+									{
+										href: "/",
+										bsstyle: "primary",
+										style: { fontWeight: "900" },
+										className: "pull-right col-lg-6 btn btn-primary",
+										onClick: this.handleSubmit.bind(this) },
+									"Submit"
+								),
+								_react2.default.createElement(
+									_reactBootstrap.Button,
+									{
+										bsStyle: "danger",
+										style: { fontWeight: "900" },
+										className: "pull-left col-lg-6",
+										onClick: this.signinpanel.bind(this) },
+									_react2.default.createElement("i", { className: "fas fa-hand-point-left" }),
+									"\xA0 Go Back"
+								)
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							null,
+							_react2.default.createElement(
+								_reactBootstrap.Modal,
+								{
+									show: this.state.show,
+									onHide: this.handleClose.bind(this) },
+								_react2.default.createElement(
+									_reactBootstrap.Modal.Header,
+									{ closeButton: true },
+									_react2.default.createElement(
+										_reactBootstrap.Modal.Title,
+										null,
+										"Change Password"
+									)
+								),
+								_react2.default.createElement(
+									_reactBootstrap.Modal.Body,
+									null,
+									_react2.default.createElement(
+										"form",
+										null,
+										_react2.default.createElement(
+											_reactBootstrap.FormGroup,
+											null,
+											_react2.default.createElement(
+												_reactBootstrap.ControlLabel,
+												null,
+												"Email Id (Registered)"
+											),
+											_react2.default.createElement(_reactBootstrap.FormControl, {
+												type: "email",
+												placeholder: "Enter Email",
+												ref: "forgotemail",
+												name: "email"
+											})
+										)
+									),
+									_react2.default.createElement(
+										"a",
+										{
+											href: "/",
+											className: "btn btn-primary",
+											style: { fontWeight: "900" },
+											onClick: this.handleforgotPassword.bind(this) },
+										"Reset Password"
+									)
+								),
+								_react2.default.createElement(
+									_reactBootstrap.Modal.Footer,
+									null,
+									_react2.default.createElement(
+										_reactBootstrap.Button,
+										{ onClick: this.handleClose.bind(this) },
+										"Close"
+									)
+								)
+							)
+						)
+					);
+					break;
 
-        case true:
-          return _react2.default.createElement(_instruction2.default, null);
-          break;
+				case true:
+					return _react2.default.createElement(_instruction2.default, null);
+					break;
 
-        default:
-          return _react2.default.createElement(
-            "center",
-            { style: { marginTop: "15%" } },
-            _react2.default.createElement(_reactSpinners.RiseLoader, { size: 40, color: "red" })
-          );
-          break;
-      }
-    }
-  }]);
+				default:
+					return _react2.default.createElement(
+						"center",
+						{ style: { marginTop: "15%" } },
+						_react2.default.createElement(_reactSpinners.RiseLoader, { size: 40, color: "red" })
+					);
+					break;
+			}
+		}
+	}]);
 
-  return Login;
+	return Login;
 }(_react2.default.Component);
 
 function mapStateToProps(state) {
-  return { user: state.user.user };
+	return { user: state.user.user };
 }
 
 function mapDispatchToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({ signUp: _authAction.signUp, signIn: _authAction.signIn, forgotPassword: _authAction.forgotPassword, getAuth: _authAction.getAuth }, dispatch);
+	return (0, _redux.bindActionCreators)({ signUp: _authAction.signUp, signIn: _authAction.signIn, forgotPassword: _authAction.forgotPassword, getAuth: _authAction.getAuth }, dispatch);
 }
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Login);
