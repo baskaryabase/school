@@ -1,26 +1,25 @@
-import React from "react";
-import { Navbar, Button, Col } from "react-bootstrap";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { getAuth } from "../../actions/authAction";
-import Styles from "../../style.css";
-import Image from "../../img/logo.png";
-import { logout } from "../../actions/authAction";
-import { Redirect } from "react-router";
-import { Link } from "react-router";
+import React from 'react';
+import { Navbar, Button, Col } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getAuth } from '../../actions/authAction';
+import Styles from '../../style.css';
+import Image from '../../img/logo.png';
+import { logout } from '../../actions/authAction';
+
 // import Instruction from "../test/instruction";
 
 class Navbars extends React.Component {
 	state = { loggedin: false };
 	componentWillMount() {
 		this.props.getAuth();
-		setTimeout(() => {
-			if (this.props.user._id == null) {
-				this.setState({ loggedin: false });
-			} else {
-				this.setState({ loggedin: true });
-			}
-		}, 1500);
+		// setTimeout(() => {
+		// 	if (this.props.user._id == null) {
+		// 		this.setState({ loggedin: false });
+		// 	} else {
+		// 		this.setState({ loggedin: true });
+		// 	}
+		// }, 1500);
 	}
 
 	handleLogout() {
@@ -45,27 +44,26 @@ class Navbars extends React.Component {
 							<Navbar.Text className="kitname">
 								<Navbar.Link
 									href="http://kitcbe.com/"
-									style={{ textDecoration: "none" }}
+									style={{ textDecoration: 'none' }}
 									target="_blank">
 									Kalaignar Karunanidhi Institute Of Technology
 								</Navbar.Link>
 							</Navbar.Text>
 						</Col>
 					</Navbar.Header>
-					{this.state.loggedin === true ? (
+					{this.props.loggedin === true ? (
 						<div className="logoutbut">
-							<Link
-								href="/"
+							<button
 								type="submit"
 								className="pull-right btn btn-sm btn-warning"
 								style={{
-									fontWeight: "900",
-									marginTop: "25px",
-									fontSize: "16px"
+									fontWeight: '900',
+									marginTop: '25px',
+									fontSize: '16px'
 								}}
 								onClick={this.handleLogout.bind(this)}>
 								<i className="fas fa-sign-out-alt" /> &nbsp;Logout
-							</Link>
+							</button>
 						</div>
 					) : (
 						<div />
@@ -80,7 +78,7 @@ class Navbars extends React.Component {
 }
 
 function mapStateToProps(state) {
-	return { user: state.user.user };
+	return { user: state.user.user, loggedin: state.user.loggedin };
 }
 
 function mapDispathToProps(dispatch) {

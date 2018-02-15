@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
 	PanelGroup,
 	Panel,
@@ -8,42 +8,42 @@ import {
 	Button,
 	Modal,
 	Well
-} from "react-bootstrap";
-import { Link } from "react-router";
-import { findDOMNode } from "react-dom";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import Instruction from "../test/instruction";
-import { Redirect } from "react-router";
+} from 'react-bootstrap';
+import { Link } from 'react-router';
+import { findDOMNode } from 'react-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Instruction from '../test/instruction';
+import { Redirect } from 'react-router';
 
 import {
 	signUp,
 	signIn,
 	forgotPassword,
 	getAuth
-} from "../../actions/authAction";
-import { RiseLoader } from "react-spinners";
+} from '../../actions/authAction';
+import { RiseLoader } from 'react-spinners';
 
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			show: false,
-			panel: "login",
-			error: "",
+			panel: 'login',
+			error: '',
 			loggedin: null
 		};
 	}
 
 	componentWillMount() {
 		this.props.getAuth();
-		setTimeout(() => {
-			if (this.props.user._id != null) {
-				this.setState({ loggedin: true });
-			} else {
-				this.setState({ loggedin: false });
-			}
-		}, 1500);
+		// setTimeout(() => {
+		// 	if (this.props.user._id != null) {
+		// 		this.setState({ loggedin: true });
+		// 	} else {
+		// 		this.setState({ loggedin: false });
+		// 	}
+		// }, 1500);
 	}
 	handleClose() {
 		this.setState({ show: false });
@@ -54,18 +54,18 @@ class Login extends React.Component {
 	}
 
 	signuppanel() {
-		this.setState({ panel: "signup" });
+		this.setState({ panel: 'signup' });
 	}
 
 	signinpanel() {
-		this.setState({ panel: "login", error: "" });
+		this.setState({ panel: 'login', error: '' });
 	}
 
 	// validateEmail
 	validateEmail() {
 		var x = findDOMNode(this.refs.email).value;
-		var atpos = x.indexOf("@");
-		var dotpos = x.lastIndexOf(".");
+		var atpos = x.indexOf('@');
+		var dotpos = x.lastIndexOf('.');
 		if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
 			return false;
 		} else {
@@ -76,29 +76,29 @@ class Login extends React.Component {
 	handleSubmit() {
 		// checking input required
 		if (
-			findDOMNode(this.refs.email).value === "" ||
-			findDOMNode(this.refs.fullname).value === "" ||
-			findDOMNode(this.refs.community).value === "" ||
-			findDOMNode(this.refs.contactnumber).value === "" ||
-			findDOMNode(this.refs.fathersname).value === "" ||
-			findDOMNode(this.refs.registernumber).value === "" ||
-			findDOMNode(this.refs.groupin12th).value === "" ||
-			findDOMNode(this.refs.password).value === "" ||
-			findDOMNode(this.refs.confirmpassword).value === ""
+			findDOMNode(this.refs.email).value === '' ||
+			findDOMNode(this.refs.fullname).value === '' ||
+			findDOMNode(this.refs.community).value === '' ||
+			findDOMNode(this.refs.contactnumber).value === '' ||
+			findDOMNode(this.refs.fathersname).value === '' ||
+			findDOMNode(this.refs.registernumber).value === '' ||
+			findDOMNode(this.refs.groupin12th).value === '' ||
+			findDOMNode(this.refs.password).value === '' ||
+			findDOMNode(this.refs.confirmpassword).value === ''
 		) {
-			this.setState({ error: "please checkout all fields" });
+			this.setState({ error: 'please checkout all fields' });
 		} else if (this.validateEmail() == false) {
 			if (this.validateEmail() == false) {
-				this.setState({ error: "Enter a valid e-mail address" });
+				this.setState({ error: 'Enter a valid e-mail address' });
 			}
 		} else {
 			if (
 				findDOMNode(this.refs.password).value !=
 				findDOMNode(this.refs.confirmpassword).value
 			) {
-				this.setState({ error: "password does not match" });
+				this.setState({ error: 'password does not match' });
 			} else {
-				this.setState({ error: "" });
+				this.setState({ error: '' });
 				this.handleSignup();
 			}
 		}
@@ -125,21 +125,21 @@ class Login extends React.Component {
 			email: findDOMNode(this.refs.emaillogin).value,
 			password: findDOMNode(this.refs.passwordlogin).value
 		};
-		if (user.email == "" || user.password == "") {
-			this.setState({ error: "checkout all fields" });
+		if (user.email == '' || user.password == '') {
+			this.setState({ error: 'checkout all fields' });
 		} else {
-			findDOMNode(this.refs.emaillogin).value = "";
-			findDOMNode(this.refs.passwordlogin).value = "";
-			this.setState({ error: "" });
+			findDOMNode(this.refs.emaillogin).value = '';
+			findDOMNode(this.refs.passwordlogin).value = '';
+			this.setState({ error: '' });
 			this.props.signIn(user);
 		}
 		setTimeout(() => {
 			if (this.props.user._id == null) {
-				this.setState({ error: "Invalid Username or Password" });
+				this.setState({ error: 'Invalid Username or Password' });
 			} else {
-				this.setState({ error: "", loggedin: true });
+				this.setState({ error: '', loggedin: true });
 			}
-		}, 800);
+		}, 1500);
 	}
 
 	// forgot email
@@ -150,21 +150,21 @@ class Login extends React.Component {
 		this.setState({ show: false });
 	}
 	render() {
-		switch (this.state.loggedin) {
+		switch (this.props.loggedin) {
 			case false:
 				return (
 					<div>
-						{this.state.panel == "login" ? (
+						{this.state.panel == 'login' ? (
 							<Panel bsStyle="primary" className="loginpanel">
 								<Panel.Heading>
 									<Panel.Title
 										componentClass="h3"
-										style={{ fontWeight: "900" }}>
+										style={{ fontWeight: '900' }}>
 										Login
 									</Panel.Title>
 								</Panel.Heading>
 								<Panel.Body>
-									{this.state.error != "" ? (
+									{this.state.error != '' ? (
 										<div className="alert alert-danger">{this.state.error}</div>
 									) : (
 										<div />
@@ -189,21 +189,21 @@ class Login extends React.Component {
 										</FormGroup>
 										<Button
 											bsStyle="primary"
-											style={{ fontWeight: "900" }}
+											style={{ fontWeight: '900' }}
 											className="pull-right col-lg-3"
 											onClick={this.handleSignin.bind(this)}>
 											Submit
 										</Button>
 									</form>
 									<h5
-										style={{ fontWeight: "900", cursor: "pointer" }}
+										style={{ fontWeight: '900', cursor: 'pointer' }}
 										onClick={this.handleShow.bind(this)}>
 										Forgot Password?
 									</h5>
 									<br />
 									<Button
 										bsStyle="danger"
-										style={{ fontWeight: "900" }}
+										style={{ fontWeight: '900' }}
 										className="pull-right col-lg-3"
 										onClick={this.signuppanel.bind(this)}>
 										Signup
@@ -215,12 +215,12 @@ class Login extends React.Component {
 								<Panel.Heading>
 									<Panel.Title
 										componentClass="h3"
-										style={{ fontWeight: "900" }}>
+										style={{ fontWeight: '900' }}>
 										Signup
 									</Panel.Title>
 								</Panel.Heading>
 								<Panel.Body>
-									{this.state.error != "" ? (
+									{this.state.error != '' ? (
 										<div className="alert alert-danger">{this.state.error}</div>
 									) : (
 										<div />
@@ -247,13 +247,13 @@ class Login extends React.Component {
 										/>
 										<ControlLabel>Register Number</ControlLabel>
 										<FormControl
-											type="text"
+											type="number"
 											placeholder="Enter Register Number"
 											ref="registernumber"
 										/>
 										<ControlLabel>Contact Number</ControlLabel>
 										<FormControl
-											type="text"
+											type="number"
 											placeholder="Enter Contact Number"
 											ref="contactnumber"
 										/>
@@ -283,17 +283,15 @@ class Login extends React.Component {
 										/>
 										<br />
 									</FormGroup>
-									<Link
-										href="/"
-										bsstyle="primary"
-										style={{ fontWeight: "900" }}
+									<Button
+										style={{ fontWeight: '900' }}
 										className="pull-right col-lg-6 btn btn-primary"
 										onClick={this.handleSubmit.bind(this)}>
 										Submit
-									</Link>
+									</Button>
 									<Button
 										bsStyle="danger"
-										style={{ fontWeight: "900" }}
+										style={{ fontWeight: '900' }}
 										className="pull-left col-lg-6"
 										onClick={this.signinpanel.bind(this)}>
 										<i className="fas fa-hand-point-left" />&nbsp; Go Back
@@ -325,7 +323,7 @@ class Login extends React.Component {
 									<a
 										href="/"
 										className="btn btn-primary"
-										style={{ fontWeight: "900" }}
+										style={{ fontWeight: '900' }}
 										onClick={this.handleforgotPassword.bind(this)}>
 										Reset Password
 									</a>
@@ -345,7 +343,7 @@ class Login extends React.Component {
 
 			default:
 				return (
-					<center style={{ marginTop: "15%" }}>
+					<center style={{ marginTop: '15%' }}>
 						<RiseLoader size={40} color="red" />
 					</center>
 				);
@@ -355,7 +353,7 @@ class Login extends React.Component {
 }
 
 function mapStateToProps(state) {
-	return { user: state.user.user };
+	return { user: state.user.user, loggedin: state.user.loggedin };
 }
 
 function mapDispatchToProps(dispatch) {

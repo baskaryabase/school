@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt-nodejs");
+const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new Schema({
 	email: { type: String, unique: true, lowercase: true },
@@ -9,13 +9,13 @@ const userSchema = new Schema({
 	fullname: String,
 	registernumber: Number,
 	community: String,
-	phonenumber: String,
+	contactnumber: Number,
 	fathersname: String,
 	groupin12th: String,
 	marks: Number
 });
 
-userSchema.pre("save", function(next) {
+userSchema.pre('save', function(next) {
 	const user = this;
 	bcrypt.genSalt(10, function(err, salt) {
 		if (err) {
@@ -43,6 +43,6 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
 	});
 };
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model('user', userSchema);
 
 module.exports = User;
