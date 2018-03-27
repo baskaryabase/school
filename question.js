@@ -458,8 +458,7 @@ module.exports = {
 			]
 		},
 		{
-			question:
-				"c++ is a",
+			question: "c++ is a",
 			choices: [
 				{
 					label: "low level ",
@@ -481,7 +480,7 @@ module.exports = {
 		},
 		{
 			question:
-				"#include<stdio.h><br>int main()<br>{<br>int a=10,b=6,c=0;<br>c=a*b;<br>printf('%d',a);<br>return 0;<br>}<br>The output is",
+				"#include<stdio.h>\nint main()\n{\nint a=10,b=6,c=0;\nc=a*b;\nprintf('%d',a);\nreturn 0;\n}\nThe output is",
 			choices: [
 				{
 					label: "10",
@@ -503,7 +502,7 @@ module.exports = {
 		},
 		{
 			question:
-				"#include<stdio.h><br>int main()<br>{<br>int a=10,b=6,c=0;<br>c=a*b;<br>cout>>b;<br>return 0;<br>}<br>The output is",
+				"#include<stdio.h>\nint main()\n{\nint a=10,b=6,c=0;\nc=a*b;\ncout>>b;\nreturn 0;\n}\nThe output is",
 			choices: [
 				{
 					label: "10 ",
@@ -587,7 +586,7 @@ module.exports = {
 			]
 		},
 		{
-			question: "char a[100];<br> a=int(char a=hello);<br>the compiler take a as",
+			question: "char a[100];\n a=int(char a=hello);\nthe compiler take a as",
 			choices: [
 				{
 					label: "int ",
@@ -608,7 +607,7 @@ module.exports = {
 			]
 		},
 		{
-			question:"inheritance is possible",
+			question: "inheritance is possible",
 			choices: [
 				{
 					label: "C ",
@@ -1331,7 +1330,7 @@ module.exports = {
 		},
 		{
 			question:
-				"are the numbers all prime numbers? The numbers are given below<br>1,2,7,11,13,19,29",
+				"are the numbers all prime numbers? The numbers are given below\n1,2,7,11,13,19,29",
 			choices: [
 				{
 					label: "approximately ",
@@ -1416,7 +1415,7 @@ module.exports = {
 			]
 		},
 		{
-			question: "If spider man=quevuw sfl<br>Then   courage=atnwfmu<br>Then  run=?",
+			question: "If spider man=quevuw sfl\nThen   courage=atnwfmu\nThen  run=?",
 			choices: [
 				{
 					label: "wnl ",
@@ -1504,6 +1503,75 @@ module.exports = {
 		}
 	],
 	answers: [
-           1,1,2,1,2,1,3,3,1,1,2,3,1,2,4,1,1,2,3,4,1,3,1,2,1,3,2,1,2,1,1,1,2,4,1,1,2,1,2,2,1,1,1,3,2,2,2,2,1,2,3,4,4,2,2,1,4,3,3,3,2,1,2,1,1,1,1,1,4,4
+		1,
+		1,
+		2,
+		1,
+		2,
+		1,
+		3,
+		3,
+		1,
+		1,
+		2,
+		3,
+		1,
+		2,
+		4,
+		1,
+		1,
+		2,
+		3,
+		4,
+		1,
+		3,
+		1,
+		2,
+		1,
+		3,
+		2,
+		1,
+		2,
+		1,
+		1,
+		1,
+		2,
+		4,
+		1,
+		1,
+		2,
+		1,
+		2,
+		2,
+		1,
+		1,
+		1,
+		3,
+		2,
+		2,
+		2,
+		2,
+		1,
+		2,
+		3,
+		4,
+		4,
+		2,
+		2,
+		1,
+		4,
+		3,
+		3,
+		3,
+		2,
+		1,
+		2,
+		1,
+		1,
+		1,
+		1,
+		1,
+		4,
+		4
 	]
 };
