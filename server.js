@@ -64,7 +64,8 @@ app.use(function(req, res, next) {
 router(app);
 
 // all api routes
-const qbanks = {
+var qbanks = require("./question")
+const qbank = {
 	qbank: [
 		{
 			question: '	Radiocarbon is produced in the atmosphere as a result of',
