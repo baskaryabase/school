@@ -1,5 +1,5 @@
 module.exports = {
-	questions: [
+	qbank: [
 		{
 			question: "ohm’s law",
 			choices: [
