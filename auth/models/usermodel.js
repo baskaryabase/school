@@ -7,8 +7,6 @@ const userSchema = new Schema({
 	started: { type: Boolean, default: false },
 	password: String,
 	fullname: String,
-	registernumber: Number,
-	community: String,
 	contactnumber: Number,
 	fathersname: String,
 	groupin12th: String,

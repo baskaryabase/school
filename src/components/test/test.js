@@ -87,7 +87,8 @@ class Test extends React.Component {
 															}
 															style={{
 																whiteSpace: 'normal',
-																testalign: 'unset'
+																testalign: 'unset',
+																fontWeight: '600'
 															}}
 															className="col-lg-8 col-md-12 col-sm-12 col-xs-12">
 															{choice.label}

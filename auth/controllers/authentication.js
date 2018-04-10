@@ -79,11 +79,9 @@ exports.signup = function(req, res, next) {
 	const email = req.body.email;
 	const password = req.body.password;
 	const fullname = req.body.fullname;
-	const registernumber = req.body.registernumber;
-	// const community = req.body.community;
 	const contactnumber = req.body.contactnumber;
-	// const fathersname = req.body.fathersname;
-	// const groupin12th = req.body.groupin12th;
+	const fathersname = req.body.fathersname;
+	const groupin12th = req.body.groupin12th;
 
 	if (!email || !password || !fullname) {
 		res.status(422).send({ error: 'checkout all field' });
@@ -103,7 +101,8 @@ exports.signup = function(req, res, next) {
 			password: password,
 			fullname: fullname,
 			contactnumber: contactnumber,
-			registernumber: registernumber
+			fathersname: fathersname,
+			groupin12th: groupin12th
 		});
 		// save user
 		user.save(function(err) {

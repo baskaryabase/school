@@ -78,10 +78,8 @@ class Login extends React.Component {
 		if (
 			findDOMNode(this.refs.email).value === '' ||
 			findDOMNode(this.refs.fullname).value === '' ||
-			findDOMNode(this.refs.community).value === '' ||
 			findDOMNode(this.refs.contactnumber).value === '' ||
 			findDOMNode(this.refs.fathersname).value === '' ||
-			findDOMNode(this.refs.registernumber).value === '' ||
 			findDOMNode(this.refs.groupin12th).value === '' ||
 			findDOMNode(this.refs.password).value === '' ||
 			findDOMNode(this.refs.confirmpassword).value === ''
@@ -108,10 +106,8 @@ class Login extends React.Component {
 		const user = {
 			email: findDOMNode(this.refs.email).value,
 			fullname: findDOMNode(this.refs.fullname).value,
-			community: findDOMNode(this.refs.community).value,
 			contactnumber: findDOMNode(this.refs.contactnumber).value,
 			fathersname: findDOMNode(this.refs.fathersname).value,
-			registernumber: findDOMNode(this.refs.registernumber).value,
 			groupin12th: findDOMNode(this.refs.groupin12th).value,
 			password: findDOMNode(this.refs.password).value,
 			confirmpassword: findDOMNode(this.refs.confirmpassword).value
@@ -245,12 +241,6 @@ class Login extends React.Component {
 											placeholder="Enter Father Name"
 											ref="fathersname"
 										/>
-										<ControlLabel>Register Number</ControlLabel>
-										<FormControl
-											type="number"
-											placeholder="Enter Register Number"
-											ref="registernumber"
-										/>
 										<ControlLabel>Contact Number</ControlLabel>
 										<FormControl
 											type="number"
@@ -262,12 +252,6 @@ class Login extends React.Component {
 											type="text"
 											placeholder="Enter 12th Group"
 											ref="groupin12th"
-										/>
-										<ControlLabel>Community</ControlLabel>
-										<FormControl
-											type="text"
-											placeholder="Enter Community"
-											ref="community"
 										/>
 										<ControlLabel>Password</ControlLabel>
 										<FormControl
