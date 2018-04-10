@@ -30,6 +30,11 @@ import {
 
 class Test extends React.Component {
 	componentWillMount() {
+		window.history.forward();
+		window.onbeforeunload = function() {
+			return 'Your work will be lost.';
+		};
+
 		this.props.getQbank();
 	}
 	state = { period: null };
