@@ -1,13 +1,13 @@
 # kit-scholarship-project
 
-clone the repository
+1. clone the repository
 `git clone https://github.com/smilysyndrella/school`
 
-change the directory
+2. change the directory
 `cd school`
 
-install the dependencies
+3. install the dependencies
 `npm i` or `yarn install`
 
-start the server by 
+4. start the server by 
 `npm start` or `yarn start`
