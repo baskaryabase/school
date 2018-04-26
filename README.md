@@ -3,7 +3,7 @@
 1. clone the repository:<br/>
    `git clone https://github.com/smilysyndrella/school`
 
-2. change the directory:<br/>
+2. change the working directory:<br/>
    `cd school`
 
 3. install the dependencies:<br/>
