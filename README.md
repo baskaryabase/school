@@ -4,10 +4,10 @@
    `git clone https://github.com/smilysyndrella/school`
 
 2. change the directory:<br/>
-   - `cd school`
+   `cd school`
 
-3. install the dependencies:
-   - `npm i` or `yarn install`
+3. install the dependencies:<br/>
+   `npm i` or `yarn install`
 
-4. start the server by 
-   - `npm start` or `yarn start`
+4. start the server by:<br/>
+   `npm start` or `yarn start`
