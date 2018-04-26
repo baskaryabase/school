@@ -1,7 +1,7 @@
 # kit-scholarship-project
 
-1. clone the repository
-   - `git clone https://github.com/smilysyndrella/school`
+1. clone the repository:
+   `git clone https://github.com/smilysyndrella/school`
 
 2. change the directory
    - `cd school`
