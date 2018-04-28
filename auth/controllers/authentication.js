@@ -31,7 +31,7 @@ exports.createforgotpasswordlink = function(req, res, next) {
 			});
 
 			var link =
-				'http://192.168.15.37:5000/forgot-password/' +
+				'https://scholarshiptest.kitcbe.com/forgot-password/' +
 				tokenForUser(existingUser);
 			let img =
 				'https://hdwallsource.com/img/2014/8/colorful-background-pictures-17219-17775-hd-wallpapers.jpg';

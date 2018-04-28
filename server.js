@@ -64,7 +64,7 @@ app.use(function(req, res, next) {
 router(app);
 
 // all api routes
-var qbanks = require("./question")
+var qbanks = require('./question');
 
 app.get('/qbank', function(req, res, next) {
 	res.json(qbanks.qbank);

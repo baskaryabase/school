@@ -34,7 +34,15 @@ class Test extends React.Component {
 		window.onbeforeunload = function() {
 			return 'Your work will be lost.';
 		};
+		function preventBack() {
+			window.history.forward();
+		}
 
+		setTimeout('preventBack()', 0);
+
+		window.onunload = function() {
+			null;
+		};
 		this.props.getQbank();
 	}
 	state = { period: null };
