@@ -68808,7 +68808,7 @@ module.exports = function (css) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -68832,48 +68832,47 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Footer = function (_React$Component) {
-  _inherits(Footer, _React$Component);
+	_inherits(Footer, _React$Component);
 
-  function Footer() {
-    _classCallCheck(this, Footer);
+	function Footer() {
+		_classCallCheck(this, Footer);
 
-    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
-  }
+		return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+	}
 
-  _createClass(Footer, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(
-          _reactBootstrap.Well,
-          { bsSize: "small", className: "footer navbar-fixed-bottom" },
-          _react2.default.createElement(
-            "span",
-            null,
-            "\xA9 2018 All Rights Reserved"
-          ),
-          _react2.default.createElement(
-            "span",
-            { className: "pull-right" },
-            _react2.default.createElement(
-              "a",
-              {
-                href: "http://www.kitinfonest.com/",
-                target: "_blank",
-                style: { textDecoration: "none" }
-              },
-              _react2.default.createElement("i", { className: "fas fa-hand-point-right" }),
-              " KIT-Infonest"
-            )
-          )
-        )
-      );
-    }
-  }]);
+	_createClass(Footer, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					_reactBootstrap.Well,
+					{ bsSize: 'small', className: 'footer navbar-fixed-bottom' },
+					_react2.default.createElement(
+						'span',
+						null,
+						'\xA9 2018 All Rights Reserved'
+					),
+					_react2.default.createElement(
+						'span',
+						{ className: 'pull-right' },
+						_react2.default.createElement(
+							'a',
+							{
+								href: 'https://play.google.com/store/apps/details?id=com.kitscholarship',
+								target: '_blank',
+								style: { textDecoration: 'none' } },
+							_react2.default.createElement('i', { 'class': 'fab fa-android', style: { color: '#6dbc8f' } }),
+							'\xA0Download Android App'
+						)
+					)
+				)
+			);
+		}
+	}]);
 
-  return Footer;
+	return Footer;
 }(_react2.default.Component);
 
 exports.default = Footer;
@@ -69076,7 +69075,15 @@ var Login = function (_React$Component) {
 									{
 										componentClass: 'h3',
 										style: { fontWeight: '900' } },
-									'Login'
+									_react2.default.createElement(
+										'center',
+										null,
+										_react2.default.createElement(
+											'h3',
+											{ style: { fontWeight: '900', cursor: 'pointer' } },
+											'Kit-Scholarship Test-2018'
+										)
+									)
 								)
 							),
 							_react2.default.createElement(
@@ -69124,7 +69131,7 @@ var Login = function (_React$Component) {
 											style: { fontWeight: '900' },
 											className: 'pull-right col-lg-3',
 											onClick: this.handleSignin.bind(this) },
-										'Submit'
+										'Login'
 									)
 								),
 								_react2.default.createElement(
@@ -69142,7 +69149,7 @@ var Login = function (_React$Component) {
 										style: { fontWeight: '900' },
 										className: 'pull-right col-lg-3',
 										onClick: this.signuppanel.bind(this) },
-									'Signup'
+									'Create Account'
 								)
 							)
 						) : _react2.default.createElement(
@@ -69156,7 +69163,7 @@ var Login = function (_React$Component) {
 									{
 										componentClass: 'h3',
 										style: { fontWeight: '900' } },
-									'Signup'
+									'Create Account'
 								)
 							),
 							_react2.default.createElement(
@@ -69246,7 +69253,7 @@ var Login = function (_React$Component) {
 								_react2.default.createElement(
 									_reactBootstrap.Button,
 									{
-										style: { fontWeight: '900' },
+										style: { fontWeight: '900', borderRadius: '0px' },
 										className: 'pull-right col-lg-6 btn btn-primary',
 										onClick: this.handleSubmit.bind(this) },
 									'Submit'
@@ -69255,7 +69262,7 @@ var Login = function (_React$Component) {
 									_reactBootstrap.Button,
 									{
 										bsStyle: 'danger',
-										style: { fontWeight: '900' },
+										style: { fontWeight: '900', borderRadius: '0px' },
 										className: 'pull-left col-lg-6',
 										onClick: this.signinpanel.bind(this) },
 									_react2.default.createElement('i', { className: 'fas fa-hand-point-left' }),
@@ -73414,7 +73421,15 @@ var Test = function (_React$Component) {
 			window.onbeforeunload = function () {
 				return 'Your work will be lost.';
 			};
+			function preventBack() {
+				window.history.forward();
+			}
 
+			setTimeout('preventBack()', 0);
+
+			window.onunload = function () {
+				null;
+			};
 			this.props.getQbank();
 		}
 	}, {

@@ -156,7 +156,11 @@ class Login extends React.Component {
 									<Panel.Title
 										componentClass="h3"
 										style={{ fontWeight: '900' }}>
-										Login
+										<center>
+											<h3 style={{ fontWeight: '900', cursor: 'pointer' }}>
+												Kit-Scholarship Test-2018
+											</h3>
+										</center>
 									</Panel.Title>
 								</Panel.Heading>
 								<Panel.Body>
@@ -188,7 +192,7 @@ class Login extends React.Component {
 											style={{ fontWeight: '900' }}
 											className="pull-right col-lg-3"
 											onClick={this.handleSignin.bind(this)}>
-											Submit
+											Login
 										</Button>
 									</form>
 									<h5
@@ -202,7 +206,7 @@ class Login extends React.Component {
 										style={{ fontWeight: '900' }}
 										className="pull-right col-lg-3"
 										onClick={this.signuppanel.bind(this)}>
-										Signup
+										Create Account
 									</Button>
 								</Panel.Body>
 							</Panel>
@@ -212,7 +216,7 @@ class Login extends React.Component {
 									<Panel.Title
 										componentClass="h3"
 										style={{ fontWeight: '900' }}>
-										Signup
+										Create Account
 									</Panel.Title>
 								</Panel.Heading>
 								<Panel.Body>
@@ -268,14 +272,14 @@ class Login extends React.Component {
 										<br />
 									</FormGroup>
 									<Button
-										style={{ fontWeight: '900' }}
+										style={{ fontWeight: '900', borderRadius: '0px' }}
 										className="pull-right col-lg-6 btn btn-primary"
 										onClick={this.handleSubmit.bind(this)}>
 										Submit
 									</Button>
 									<Button
 										bsStyle="danger"
-										style={{ fontWeight: '900' }}
+										style={{ fontWeight: '900', borderRadius: '0px' }}
 										className="pull-left col-lg-6"
 										onClick={this.signinpanel.bind(this)}>
 										<i className="fas fa-hand-point-left" />&nbsp; Go Back
